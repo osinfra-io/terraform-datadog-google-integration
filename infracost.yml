@@ -1,0 +1,9 @@
+# Infracost Config File
+# https://www.infracost.io/docs/features/config_file
+
+version: 0.1
+
+projects:
+  - name: "terraform-datadog-google-integration - Default"
+    path: test/fixtures/default_integration
+    usage_file: test/fixtures/default_integration/infracost-usage.yml
