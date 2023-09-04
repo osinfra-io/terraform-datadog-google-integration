@@ -1,6 +1,7 @@
 variable "api_key" {
   description = "Datadog API key"
   type        = string
+  sensitive   = true
 }
 
 variable "is_cspm_enabled" {

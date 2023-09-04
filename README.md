@@ -25,12 +25,12 @@ You can check the [test/fixtures](test/fixtures/) directory for example configur
 Here is an example of a basic configuration:
 
 ```hcl
-module "cloud_nat" {
-  source   = "github.com/osinfra-io/terraform-datadog-google-integration//regional?ref=v0.0.0"
+module "datadog" {
+  source   = "github.com/osinfra-io/terraform-datadog-google-integration//global?ref=v0.0.0"
 
-  network    = "example-vpc"
-  project    = "example-project"
-  region     = "us-east1"
+  api_key         = var.api_key
+  is_cspm_enabled = true
+  project         = "example-project"
 }
 ```
 
