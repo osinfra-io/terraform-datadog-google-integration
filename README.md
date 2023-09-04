@@ -1,4 +1,4 @@
-# <img align="left" width="45" height="45" src="https://github.com/osinfra-io/terraform-datadog-google-integration/assets/1610100/20f4f75e-bf62-46e5-8f35-0ba3a9482b39"> Datadog - Google Cloud Platform Integration Terraform Module
+# <img align="left" width="45" height="45" src="https://github.com/osinfra-io/terraform-datadog-google-integration/assets/1610100/95823e0c-3573-48fa-a2bc-646da96d76d6"> Datadog - Google Cloud Platform Integration Terraform Module
 
 **[GitHub Actions](https://github.com/osinfra-io/terraform-datadog-google-integration/actions):**
 
