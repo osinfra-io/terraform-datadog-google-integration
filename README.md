@@ -6,7 +6,7 @@
 
 **[Infracost](https://www.infracost.io):**
 
-[![infracost](https://img.shields.io/endpoint?label=Default&url=https://dashboard.api.infracost.io/shields/json/cbeecfe3-576f-4553-984c-e451a575ee47/repos/b2687edb-3eb9-4f6b-99b3-545ec27bab4d/branch/ef3d37cf-2b03-430b-a51d-e06be6e98921/terraform-datadog-google-integration%2520-%2520Default)](https://dashboard.infracost.io/org/osinfra-io/repos/b2687edb-3eb9-4f6b-99b3-545ec27bab4d?tab=settings)
+[![infracost](https://img.shields.io/endpoint?label=Default&url=https://dashboard.api.infracost.io/shields/json/cbeecfe3-576f-4553-984c-e451a575ee47/repos/7fa0af09-f883-4e0e-8103-351614a07df3/branch/b6b77a3f-4fe8-4079-a39f-d3e1f715e543/terraform-datadog-google-integration%2520-%2520Default)](https://dashboard.infracost.io/org/osinfra-io/repos/7fa0af09-f883-4e0e-8103-351614a07df3?tab=settings)
 
 Monthly cost estimates for this module based on these usage values:
 
