@@ -1,0 +1,35 @@
+# Test Kitchen
+# https://docs.chef.io/workstation/config_yml_kitchen
+
+driver:
+  name: terraform
+  variables:
+    api_key: <%= ENV['DATADOG_API_KEY'] %>
+    app_key: <%= ENV['DATADOG_APP_KEY'] %>
+
+platforms:
+  - name: gcp
+
+provisioner:
+  name: terraform
+
+transport:
+  name: terraform
+
+verifier:
+  name: terraform
+  color: true
+
+suites:
+  - name: default_integration
+    transport:
+      root_module_directory: test/fixtures/default_integration
+    verifier:
+      systems:
+        - name: inspec_gcp
+          backend: gcp
+          controls:
+            - google_service_account
+            - google_pubsub_topic
+            - google_pubsub_subscription
+            - google_logging_project_sink
