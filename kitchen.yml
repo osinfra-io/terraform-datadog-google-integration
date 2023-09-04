@@ -1,11 +1,10 @@
 # Test Kitchen
 # https://docs.chef.io/workstation/config_yml_kitchen
 
+# TF_VAR_api_key and TF_VAR_app_key environment variables are used to set the Datadog API and APP keys for local testing.
+
 driver:
   name: terraform
-  variables:
-    api_key: <%= ENV['DATADOG_API_KEY'] %>
-    app_key: <%= ENV['DATADOG_APP_KEY'] %>
 
 platforms:
   - name: gcp
