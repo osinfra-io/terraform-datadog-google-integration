@@ -5,6 +5,7 @@ driver:
   name: terraform
   variables:
     api_key: <%= ENV['DATADOG_API_KEY'] %>
+    app_key: <%= ENV['DATADOG_APP_KEY'] %>
 
 platforms:
   - name: gcp

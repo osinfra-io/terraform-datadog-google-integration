@@ -11,8 +11,10 @@ on:
       - main
     paths-ignore:
       - "**.md"
+
 env:
   DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY }}
+  DATADOG_APP_KEY: ${{ secrets.DATADOG_APP_KEY }}
 
 # For reusable workflows, the permissions setting for id-token should be set to write at the
 # caller workflow level or in the specific job that calls the reusable workflow.
