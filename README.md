@@ -22,7 +22,7 @@ Terraform **example** module for Datadog Google Cloud Platform integration.
 
 You can check the [test/fixtures](test/fixtures/) directory for example configurations. These fixtures set up the system for the testing process by providing it with all the necessary code to initialize it, thus creating good examples to base your configurations on.
 
-Required APIs (managed at the project level with [terraform-google-project](https://github.com/osinfra-io/terraform-google-project) child module):
+Required APIs (managed with the [terraform-google-project](https://github.com/osinfra-io/terraform-google-project) child module):
 
 - `cloudasset.googleapis.com`
 - `cloudbilling.googleapis.com`
