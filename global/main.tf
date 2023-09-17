@@ -83,7 +83,7 @@ resource "google_logging_project_sink" "this" {
 
   exclusions {
     name   = "exclude-datadog-logs"
-    filter = "resource.type=\"global\" AND protoPayload.authenticationInfo.principalEmail=\"${google_service_account.this.email}\""
+    filter = "protoPayload.authenticationInfo.principalEmail=\"${google_service_account.this.email}\""
   }
 
   name                   = "export-logs-to-datadog"
