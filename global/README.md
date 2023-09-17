@@ -11,8 +11,8 @@ No requirements.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_datadog"></a> [datadog](#provider\_datadog) | 3.29.0 |
-| <a name="provider_google"></a> [google](#provider\_google) | 4.80.0 |
+| <a name="provider_datadog"></a> [datadog](#provider\_datadog) | 3.30.0 |
+| <a name="provider_google"></a> [google](#provider\_google) | 4.82.0 |
 
 ## Modules
 

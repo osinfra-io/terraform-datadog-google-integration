@@ -79,7 +79,13 @@ resource "google_pubsub_subscription" "this" {
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/logging_project_sink
 
 resource "google_logging_project_sink" "this" {
-  destination            = "pubsub.googleapis.com/projects/${var.project}/topics/${google_pubsub_topic.this.name}"
+  destination = "pubsub.googleapis.com/projects/${var.project}/topics/${google_pubsub_topic.this.name}"
+
+  exclusions {
+    name   = "exclude-datadog-logs"
+    filter = "resource.type=\"global\" AND user.email=\"${google_service_account.this.email}\""
+  }
+
   name                   = "export-logs-to-datadog"
   project                = var.project
   unique_writer_identity = true
