@@ -15,6 +15,13 @@ module "test" {
   source = "../../../global"
 
   api_key         = var.api_key
+  cost_center     = "x000"
   is_cspm_enabled = true
-  project         = var.project
+
+  labels = {
+    env  = "sb"
+    team = "testing"
+  }
+
+  project = var.project
 }

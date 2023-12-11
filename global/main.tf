@@ -56,7 +56,7 @@ resource "google_project_iam_member" "this" {
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_topic
 
 resource "google_pubsub_topic" "this" {
-  labels  = var.labels
+  labels  = local.labels
   name    = "export-logs-to-datadog"
   project = var.project
 }
@@ -65,7 +65,7 @@ resource "google_pubsub_topic" "this" {
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_subscription
 
 resource "google_pubsub_subscription" "this" {
-  labels  = var.labels
+  labels  = local.labels
   name    = "export-logs-to-datadog"
   project = var.project
   topic   = google_pubsub_topic.this.name

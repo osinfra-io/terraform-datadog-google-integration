@@ -12,5 +12,5 @@ variable "app_key" {
 
 variable "project" {
   type    = string
-  default = "testing-kitchen-tf11-sb"
+  default = "testing-kitchen-tfbd-sb"
 }
