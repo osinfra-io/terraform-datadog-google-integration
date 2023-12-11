@@ -6,7 +6,7 @@
 
 **[Infracost](https://www.infracost.io):**
 
-[![infracost](https://img.shields.io/endpoint?label=Default&url=https://dashboard.api.infracost.io/shields/json/cbeecfe3-576f-4553-984c-e451a575ee47/repos/7fa0af09-f883-4e0e-8103-351614a07df3/branch/b6b77a3f-4fe8-4079-a39f-d3e1f715e543/terraform-datadog-google-integration%2520-%2520Default)](https://dashboard.infracost.io/org/osinfra-io/repos/7fa0af09-f883-4e0e-8103-351614a07df3?tab=settings)
+[![infracost](https://img.shields.io/endpoint?label=default_integration&url=https://dashboard.api.infracost.io/shields/json/cbeecfe3-576f-4553-984c-e451a575ee47/repos/7fa0af09-f883-4e0e-8103-351614a07df3/branch/b6b77a3f-4fe8-4079-a39f-d3e1f715e543/default_integration)](https://dashboard.infracost.io/org/osinfra-io/repos/7fa0af09-f883-4e0e-8103-351614a07df3?tab=settings)
 
 Monthly cost estimates for this module based on these usage values:
 
@@ -38,6 +38,7 @@ module "datadog" {
   source   = "github.com/osinfra-io/terraform-datadog-google-integration//global?ref=v0.0.0"
 
   api_key         = var.api_key
+  cost_center     = "x000"
   is_cspm_enabled = true
   project         = "example-project"
 }
