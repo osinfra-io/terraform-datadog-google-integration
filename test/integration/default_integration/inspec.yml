@@ -10,4 +10,4 @@ name: InSpec GCP (Google Cloud Platform) Resource Pack
 
 depends:
   - name: inspec_gcp
-    url: https://github.com/inspec/inspec-gcp/archive/v1.10.39.tar.gz
+    url: https://github.com/inspec/inspec-gcp/archive/v1.11.93.tar.gz
