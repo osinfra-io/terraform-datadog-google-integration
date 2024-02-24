@@ -9,6 +9,12 @@ variable "cost_center" {
   type        = string
 }
 
+variable "enable_cloud_cost_management" {
+  description = "Whether Datadog collects cloud cost management data from your GCP project, this should only be set to true in a single project"
+  type        = bool
+  default     = false
+}
+
 variable "is_cspm_enabled" {
   description = "Whether Datadog collects cloud security posture management resources from your GCP project"
   type        = bool
