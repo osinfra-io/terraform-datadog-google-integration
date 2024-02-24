@@ -16,11 +16,13 @@ Monthly cost estimates for this module based on these usage values:
 
 Terraform **example** module for Datadog Google Cloud Platform integration.
 
-💡 *We do not recommend consuming this module like you might a [public module](https://registry.terraform.io/browse/modules). Its purpose is to be a baseline, something you can fork, potentially maintain, and modify to fit your organization's needs. Using public modules vs. writing your own has various [drivers and trade-offs](https://docs.osinfra.io/fundamentals/architecture-decision-records/adr-0003) that your organization should evaluate.*
+> [!NOTE]
+> We do not recommend consuming this module like you might a [public module](https://registry.terraform.io/browse/modules). It is a baseline, something you can fork, potentially maintain, and modify to fit your organization's needs. Using public modules vs. writing your own has various [drivers and trade-offs](https://docs.osinfra.io/fundamentals/architecture-decision-records/adr-0003) that your organization should evaluate.
 
 ## 🔩 Usage
 
-You can check the [test/fixtures](test/fixtures/) directory for example configurations. These fixtures set up the system for testing by providing all the necessary code to initialize it, thus creating good examples to base your configurations on.
+> [!TIP]
+> You can check the [test/fixtures](test/fixtures/) directory for example configurations. These fixtures set up the system for testing by providing all the necessary initial code, thus creating good examples to base your configurations.
 
 Required APIs (managed with the [terraform-google-project](https://github.com/osinfra-io/terraform-google-project) child module):
 
@@ -72,6 +74,12 @@ Links to documentation and other resources required to develop and iterate in th
 - [gcp-integration](https://docs.datadoghq.com/integrations/google_cloud_platform)
 
 ### 🔍 Tests
+
+You'll need to be a member of the [platform-contributors](https://groups.google.com/a/osinfra.io/g/platform-contributors) Google Group to run the tests. This group manages access to the resource hierarchy's `Testing/Sandbox` folder. You can request access to this group by opening an issue [here](https://github.com/osinfra-io/google-cloud-hierarchy/issues/new?assignees=&labels=enhancement&projects=&template=add-update-identity-group.yml&title=Add+or+update+identity+group).
+
+```none
+bundle install
+```
 
 ```none
 bundle exec kitchen converge
