@@ -24,6 +24,8 @@ You can check the [test/fixtures](test/fixtures/) directory for example configur
 
 Required APIs (managed with the [terraform-google-project](https://github.com/osinfra-io/terraform-google-project) child module):
 
+- `bigquerydatatransfer.googleapis.com` (If `enable_cloud_cost_management` is `true`)
+- `bigquery.googleapis.com` (If `enable_cloud_cost_management` is `true`)
 - `cloudasset.googleapis.com`
 - `cloudbilling.googleapis.com`
 - `cloudresourcemanager.googleapis.com`

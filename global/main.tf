@@ -18,6 +18,19 @@ resource "datadog_integration_gcp_sts" "this" {
   host_filters    = ["datadog:monitored"]
 }
 
+# Google BigQuery Dataset Resource
+# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/bigquery_dataset
+
+resource "google_bigquery_dataset" "billing_export" {
+  count = var.enable_cloud_cost_management ? 1 : 0
+
+  dataset_id    = "billing_export"
+  description   = "Cloud Billing data to export to BigQuery"
+  friendly_name = "Billing Export"
+  labels        = local.labels
+  project       = var.project
+}
+
 # Google Service Account Resource
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_service_account
 

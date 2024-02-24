@@ -14,9 +14,10 @@ provider "datadog" {
 module "test" {
   source = "../../../global"
 
-  api_key         = var.api_key
-  cost_center     = "x000"
-  is_cspm_enabled = true
+  api_key                      = var.api_key
+  cost_center                  = "x000"
+  enable_cloud_cost_management = true
+  is_cspm_enabled              = true
 
   labels = {
     env        = "sb"
