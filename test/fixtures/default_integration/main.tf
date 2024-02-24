@@ -19,8 +19,9 @@ module "test" {
   is_cspm_enabled = true
 
   labels = {
-    env  = "sb"
-    team = "testing"
+    env        = "sb"
+    repository = "terraform-google-storage-bucket"
+    team       = "testing"
   }
 
   project = var.project
