@@ -9,6 +9,12 @@ variable "cost_center" {
   type        = string
 }
 
+variable "cloud_cost_management_location" {
+  description = "The location for the cloud cost management bucket and Bigquery dataset, only used if enable_cloud_cost_management is true"
+  type        = string
+  default     = "US"
+}
+
 variable "enable_cloud_cost_management" {
   description = "Whether Datadog collects cloud cost management data from your GCP project, this should only be set to true in a single project"
   type        = bool

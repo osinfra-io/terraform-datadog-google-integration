@@ -12,7 +12,8 @@ No requirements.
 | Name | Version |
 |------|---------|
 | <a name="provider_datadog"></a> [datadog](#provider\_datadog) | 3.36.1 |
-| <a name="provider_google"></a> [google](#provider\_google) | 5.17.0 |
+| <a name="provider_google"></a> [google](#provider\_google) | 5.18.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.6.0 |
 
 ## Modules
 
@@ -24,19 +25,24 @@ No modules.
 |------|------|
 | [datadog_integration_gcp_sts.this](https://registry.terraform.io/providers/datadog/datadog/latest/docs/resources/integration_gcp_sts) | resource |
 | [google_bigquery_dataset.billing_export](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/bigquery_dataset) | resource |
+| [google_bigquery_dataset_iam_member.cloud_cost_management](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/bigquery_dataset_iam_member) | resource |
 | [google_logging_project_sink.this](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/logging_project_sink) | resource |
 | [google_project_iam_member.this](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_iam_member) | resource |
 | [google_pubsub_subscription.this](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_subscription) | resource |
 | [google_pubsub_topic.this](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_topic) | resource |
 | [google_pubsub_topic_iam_member.this](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_topic_iam_member) | resource |
 | [google_service_account.this](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account) | resource |
-| [google_service_account_iam_member.this](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account_iam_member) | resource |
+| [google_service_account_iam_member.service_account_token_creator](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account_iam_member) | resource |
+| [google_storage_bucket.cloud_cost_management](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket) | resource |
+| [google_storage_bucket_iam_member.cloud_cost_management](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket_iam_member) | resource |
+| [random_id.this](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/id) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_api_key"></a> [api\_key](#input\_api\_key) | Datadog API key | `string` | n/a | yes |
+| <a name="input_cloud_cost_management_location"></a> [cloud\_cost\_management\_location](#input\_cloud\_cost\_management\_location) | The location for the cloud cost management bucket and Bigquery dataset, only used if enable\_cloud\_cost\_management is true | `string` | `"US"` | no |
 | <a name="input_cost_center"></a> [cost\_center](#input\_cost\_center) | The cost center to use for resource labels | `string` | n/a | yes |
 | <a name="input_enable_cloud_cost_management"></a> [enable\_cloud\_cost\_management](#input\_enable\_cloud\_cost\_management) | Whether Datadog collects cloud cost management data from your GCP project, this should only be set to true in a single project | `bool` | `false` | no |
 | <a name="input_is_cspm_enabled"></a> [is\_cspm\_enabled](#input\_is\_cspm\_enabled) | Whether Datadog collects cloud security posture management resources from your GCP project | `bool` | `false` | no |
