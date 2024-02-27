@@ -9,8 +9,8 @@ variable "cost_center" {
   type        = string
 }
 
-variable "cloud_cost_management_bucket_location" {
-  description = "The location for the cloud cost management bucket, only used if enable_cloud_cost_management is true"
+variable "cloud_cost_management_location" {
+  description = "The location for the cloud cost management bucket and Bigquery dataset, only used if enable_cloud_cost_management is true"
   type        = string
   default     = "US"
 }

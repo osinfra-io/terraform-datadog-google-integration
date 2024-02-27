@@ -28,7 +28,9 @@ resource "google_bigquery_dataset" "billing_export" {
   description   = "Cloud Billing data to export to BigQuery"
   friendly_name = "Billing Export"
   labels        = local.labels
-  project       = var.project
+  location      = var.cloud_cost_management_location
+
+  project = var.project
 }
 
 # Google BigQuery Dataset IAM Member Resource
@@ -71,7 +73,7 @@ resource "google_storage_bucket" "cloud_cost_management" {
   count = var.enable_cloud_cost_management ? 1 : 0
 
   labels                      = local.labels
-  location                    = var.cloud_cost_management_bucket_location
+  location                    = var.cloud_cost_management_location
   name                        = "datadog-cloud-cost-management-${random_id.this.hex}"
   project                     = var.project
   uniform_bucket_level_access = true

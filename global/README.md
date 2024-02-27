@@ -42,7 +42,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_api_key"></a> [api\_key](#input\_api\_key) | Datadog API key | `string` | n/a | yes |
-| <a name="input_cloud_cost_management_bucket_location"></a> [cloud\_cost\_management\_bucket\_location](#input\_cloud\_cost\_management\_bucket\_location) | The location for the cloud cost management bucket, only used if enable\_cloud\_cost\_management is true | `string` | `"US"` | no |
+| <a name="input_cloud_cost_management_location"></a> [cloud\_cost\_management\_location](#input\_cloud\_cost\_management\_location) | The location for the cloud cost management bucket and Bigquery dataset, only used if enable\_cloud\_cost\_management is true | `string` | `"US"` | no |
 | <a name="input_cost_center"></a> [cost\_center](#input\_cost\_center) | The cost center to use for resource labels | `string` | n/a | yes |
 | <a name="input_enable_cloud_cost_management"></a> [enable\_cloud\_cost\_management](#input\_enable\_cloud\_cost\_management) | Whether Datadog collects cloud cost management data from your GCP project, this should only be set to true in a single project | `bool` | `false` | no |
 | <a name="input_is_cspm_enabled"></a> [is\_cspm\_enabled](#input\_is\_cspm\_enabled) | Whether Datadog collects cloud security posture management resources from your GCP project | `bool` | `false` | no |
