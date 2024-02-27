@@ -18,6 +18,17 @@ resource_type_default_usage:
   ##
   # google_bigquery_dataset:
     # monthly_queries_tb: 0.0 # Monthly number of bytes processed (also referred to as bytes read) in TB.
+  # google_storage_bucket:
+    # storage_gb: 0.0 # Total size of bucket in GB.
+    # monthly_class_a_operations: 0 # Monthly number of class A operations (object adds, bucket/object list).
+    # monthly_class_b_operations: 0 # Monthly number of class B operations (object gets, retrieve bucket/object metadata).
+    # monthly_data_retrieval_gb: 0.0 # Monthly amount of data retrieved in GB.
+    # monthly_egress_data_transfer_gb:
+      # same_continent: 0.0 # Same continent.
+      # worldwide: 0.0 # Worldwide excluding Asia, Australia.
+      # asia: 0.0 # Asia excluding China, but including Hong Kong.
+      # china: 0.0 # China excluding Hong Kong.
+      # australia: 0.0 # Australia.
 # resource_usage:
   ##
   ## The following usage values apply to individual resources and override any value defined in the resource_type_default_usage section.
@@ -25,6 +36,17 @@ resource_type_default_usage:
   ##
   # module.test.google_bigquery_dataset.billing_export[0]:
     # monthly_queries_tb: 0.0 # Monthly number of bytes processed (also referred to as bytes read) in TB.
+  # module.test.google_storage_bucket.cloud_cost_management[0]:
+    # storage_gb: 0.0 # Total size of bucket in GB.
+    # monthly_class_a_operations: 0 # Monthly number of class A operations (object adds, bucket/object list).
+    # monthly_class_b_operations: 0 # Monthly number of class B operations (object gets, retrieve bucket/object metadata).
+    # monthly_data_retrieval_gb: 0.0 # Monthly amount of data retrieved in GB.
+    # monthly_egress_data_transfer_gb:
+      # same_continent: 0.0 # Same continent.
+      # worldwide: 0.0 # Worldwide excluding Asia, Australia.
+      # asia: 0.0 # Asia excluding China, but including Hong Kong.
+      # china: 0.0 # China excluding Hong Kong.
+      # australia: 0.0 # Australia.
   # module.test.google_logging_project_sink.this:
     # monthly_logging_data_gb: 0.0 # Monthly logging data in GB.
   # module.test.google_pubsub_subscription.this:

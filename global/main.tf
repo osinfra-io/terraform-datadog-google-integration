@@ -31,6 +31,21 @@ resource "google_bigquery_dataset" "billing_export" {
   project       = var.project
 }
 
+# Google BigQuery Dataset IAM Member Resource
+# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/bigquery_dataset_iam_member
+
+resource "google_bigquery_dataset_iam_member" "cloud_cost_management" {
+  for_each = var.enable_cloud_cost_management ? toset([
+    "roles/bigquery.admin",
+    "roles/bigquery.dataEditor"
+  ]) : toset([])
+
+  dataset_id = google_bigquery_dataset.billing_export[0].dataset_id
+  member     = "serviceAccount:${datadog_integration_gcp_sts.this.delegate_account_email}"
+  project    = var.project
+  role       = each.key
+}
+
 # Google Service Account Resource
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_service_account
 
@@ -43,10 +58,37 @@ resource "google_service_account" "this" {
 # Google Service Account IAM Member Resource
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_service_account_iam_member
 
-resource "google_service_account_iam_member" "this" {
+resource "google_service_account_iam_member" "service_account_token_creator" {
   member             = "serviceAccount:${datadog_integration_gcp_sts.this.delegate_account_email}"
   role               = "roles/iam.serviceAccountTokenCreator"
   service_account_id = google_service_account.this.name
+}
+
+# Google Storage Bucket Resource
+# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket
+
+resource "google_storage_bucket" "cloud_cost_management" {
+  count = var.enable_cloud_cost_management ? 1 : 0
+
+  labels                      = local.labels
+  location                    = var.cloud_cost_management_bucket_location
+  name                        = "datadog-cloud-cost-management-${random_id.this.hex}"
+  project                     = var.project
+  uniform_bucket_level_access = true
+}
+
+# Google Storage Bucket IAM Member Resource
+# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket_iam_member
+
+resource "google_storage_bucket_iam_member" "cloud_cost_management" {
+  for_each = var.enable_cloud_cost_management ? toset([
+    "roles/storage.legacyObjectReader",
+    "roles/storage.legacyBucketWriter"
+  ]) : toset([])
+
+  bucket = google_storage_bucket.cloud_cost_management[0].name
+  member = "serviceAccount:${datadog_integration_gcp_sts.this.delegate_account_email}"
+  role   = each.key
 }
 
 # Google Project IAM Member Resource
@@ -112,4 +154,12 @@ resource "google_pubsub_topic_iam_member" "this" {
   project = var.project
   role    = "roles/pubsub.publisher"
   topic   = google_pubsub_topic.this.name
+}
+
+# Random ID Resource
+# https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/id
+
+resource "random_id" "this" {
+  prefix      = "tf"
+  byte_length = "1"
 }
