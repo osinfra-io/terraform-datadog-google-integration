@@ -161,5 +161,5 @@ resource "google_pubsub_topic_iam_member" "this" {
 
 resource "random_id" "this" {
   prefix      = "tf"
-  byte_length = "1"
+  byte_length = "2"
 }
