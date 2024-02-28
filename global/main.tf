@@ -43,7 +43,7 @@ resource "google_bigquery_dataset_iam_member" "cloud_cost_management" {
   ]) : toset([])
 
   dataset_id = google_bigquery_dataset.billing_export[0].dataset_id
-  member     = "serviceAccount:${datadog_integration_gcp_sts.this.delegate_account_email}"
+  member     = "serviceAccount:${google_service_account.this.email}"
   project    = var.project
   role       = each.key
 }
@@ -89,7 +89,7 @@ resource "google_storage_bucket_iam_member" "cloud_cost_management" {
   ]) : toset([])
 
   bucket = google_storage_bucket.cloud_cost_management[0].name
-  member = "serviceAccount:${datadog_integration_gcp_sts.this.delegate_account_email}"
+  member = "serviceAccount:${google_service_account.this.email}"
   role   = each.key
 }
 
