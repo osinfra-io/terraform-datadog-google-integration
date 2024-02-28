@@ -13,7 +13,7 @@ terraform {
 # https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/integration_gcp_sts
 
 resource "datadog_integration_gcp_sts" "this" {
-  client_email    = google_service_account.this.email
+  client_email    = google_service_account.integration.email
   is_cspm_enabled = var.is_cspm_enabled
   host_filters    = ["datadog:monitored"]
 }
@@ -36,22 +36,17 @@ resource "google_bigquery_dataset" "billing_export" {
 # Google BigQuery Dataset IAM Member Resource
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/bigquery_dataset_iam_member
 
-resource "google_bigquery_dataset_iam_member" "cloud_cost_management" {
-  for_each = var.enable_cloud_cost_management ? toset([
-    "roles/bigquery.admin",
-    "roles/bigquery.dataEditor"
-  ]) : toset([])
-
+resource "google_bigquery_dataset_iam_member" "billing_export" {
   dataset_id = google_bigquery_dataset.billing_export[0].dataset_id
-  member     = "serviceAccount:${google_service_account.this.email}"
+  member     = "serviceAccount:${google_service_account.integration.email}"
   project    = var.project
-  role       = each.key
+  role       = "roles/bigquery.dataEditor"
 }
 
 # Google Service Account Resource
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_service_account
 
-resource "google_service_account" "this" {
+resource "google_service_account" "integration" {
   account_id   = "datadog"
   display_name = "Service Account for Datadog"
   project      = var.project
@@ -60,10 +55,10 @@ resource "google_service_account" "this" {
 # Google Service Account IAM Member Resource
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_service_account_iam_member
 
-resource "google_service_account_iam_member" "service_account_token_creator" {
+resource "google_service_account_iam_member" "integration" {
   member             = "serviceAccount:${datadog_integration_gcp_sts.this.delegate_account_email}"
   role               = "roles/iam.serviceAccountTokenCreator"
-  service_account_id = google_service_account.this.name
+  service_account_id = google_service_account.integration.name
 }
 
 # Google Storage Bucket Resource
@@ -89,7 +84,7 @@ resource "google_storage_bucket_iam_member" "cloud_cost_management" {
   ]) : toset([])
 
   bucket = google_storage_bucket.cloud_cost_management[0].name
-  member = "serviceAccount:${google_service_account.this.email}"
+  member = "serviceAccount:${google_service_account.integration.email}"
   role   = each.key
 }
 
@@ -99,12 +94,13 @@ resource "google_storage_bucket_iam_member" "cloud_cost_management" {
 resource "google_project_iam_member" "this" {
   for_each = toset([
     "roles/browser",
+    "roles/bigquery.admin", # TODO: #16 Replace with custom role
     "roles/cloudasset.viewer",
     "roles/compute.viewer",
     "roles/monitoring.viewer",
   ])
 
-  member  = "serviceAccount:${google_service_account.this.email}"
+  member  = "serviceAccount:${google_service_account.integration.email}"
   project = var.project
   role    = each.key
 }
@@ -112,7 +108,7 @@ resource "google_project_iam_member" "this" {
 # Google PubSub Topic Resource
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_topic
 
-resource "google_pubsub_topic" "this" {
+resource "google_pubsub_topic" "integration" {
   labels  = local.labels
   name    = "export-logs-to-datadog"
   project = var.project
@@ -121,11 +117,11 @@ resource "google_pubsub_topic" "this" {
 # Google PubSub Subscription Resource
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_subscription
 
-resource "google_pubsub_subscription" "this" {
+resource "google_pubsub_subscription" "integration" {
   labels  = local.labels
   name    = "export-logs-to-datadog"
   project = var.project
-  topic   = google_pubsub_topic.this.name
+  topic   = google_pubsub_topic.integration.name
 
   push_config {
     push_endpoint = "https://gcp-intake.logs.datadoghq.com/api/v2/logs?dd-api-key=${var.api_key}&dd-protocol=gcp"
@@ -135,12 +131,12 @@ resource "google_pubsub_subscription" "this" {
 # Google Logging Project Sink Resource
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/logging_project_sink
 
-resource "google_logging_project_sink" "this" {
-  destination = "pubsub.googleapis.com/projects/${var.project}/topics/${google_pubsub_topic.this.name}"
+resource "google_logging_project_sink" "integration" {
+  destination = "pubsub.googleapis.com/projects/${var.project}/topics/${google_pubsub_topic.integration.name}"
 
   exclusions {
     name   = "exclude-datadog-logs"
-    filter = "protoPayload.authenticationInfo.principalEmail=\"${google_service_account.this.email}\""
+    filter = "protoPayload.authenticationInfo.principalEmail=\"${google_service_account.integration.email}\""
   }
 
   name                   = "export-logs-to-datadog"
@@ -151,11 +147,11 @@ resource "google_logging_project_sink" "this" {
 # Google PubSub Topic IAM Member Resource
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_topic_iam#google_pubsub_topic_iam_member
 
-resource "google_pubsub_topic_iam_member" "this" {
-  member  = google_logging_project_sink.this.writer_identity
+resource "google_pubsub_topic_iam_member" "integration" {
+  member  = google_logging_project_sink.integration.writer_identity
   project = var.project
   role    = "roles/pubsub.publisher"
-  topic   = google_pubsub_topic.this.name
+  topic   = google_pubsub_topic.integration.name
 }
 
 # Random ID Resource
