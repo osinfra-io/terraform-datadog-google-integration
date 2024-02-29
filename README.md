@@ -71,6 +71,7 @@ See the documentation for setting up a local development environment [here](http
 
 Links to documentation and other resources required to develop and iterate in this repository successfully.
 
+- [gcp-cloud-cost-management](https://docs.datadoghq.com/cloud_cost_management/google_cloud)
 - [gcp-integration](https://docs.datadoghq.com/integrations/google_cloud_platform)
 
 ### 🔍 Tests
