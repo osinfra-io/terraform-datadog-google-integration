@@ -47,11 +47,11 @@ resource_type_default_usage:
       # asia: 0.0 # Asia excluding China, but including Hong Kong.
       # china: 0.0 # China excluding Hong Kong.
       # australia: 0.0 # Australia.
-  # module.test.google_logging_project_sink.this:
+  # module.test.google_logging_project_sink.integration:
     # monthly_logging_data_gb: 0.0 # Monthly logging data in GB.
-  # module.test.google_pubsub_subscription.this:
+  # module.test.google_pubsub_subscription.integration:
     # monthly_message_data_tb: 0.0 # Monthly amount of message data pulled by the subscription in TB.
     # storage_gb: 0.0 # Storage for retaining acknowledged messages in GB.
     # snapshot_storage_gb: 0.0 # Snapshot storage for unacknowledged messages in GB.
-  # module.test.google_pubsub_topic.this:
+  # module.test.google_pubsub_topic.integration:
     # monthly_message_data_tb: 0.0 # Monthly amount of message data published to the topic in TB.

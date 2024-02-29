@@ -94,10 +94,10 @@ resource "google_storage_bucket_iam_member" "cloud_cost_management" {
 resource "google_project_iam_member" "this" {
   for_each = toset([
     "roles/browser",
-    "roles/bigquery.admin", # TODO: #16 Replace with custom role
     "roles/cloudasset.viewer",
     "roles/compute.viewer",
     "roles/monitoring.viewer",
+    "organizations/163313809793/roles/datadog.cloudCostManagement"
   ])
 
   member  = "serviceAccount:${google_service_account.integration.email}"
