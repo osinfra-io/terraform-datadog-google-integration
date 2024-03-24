@@ -16,7 +16,7 @@ module "test" {
 
   api_key                      = var.api_key
   cost_center                  = "x000"
-  enable_cloud_cost_management = true
+  enable_cloud_cost_management = false
   is_cspm_enabled              = true
 
   labels = {

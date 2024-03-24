@@ -37,6 +37,8 @@ resource "google_bigquery_dataset" "billing_export" {
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/bigquery_dataset_iam_member
 
 resource "google_bigquery_dataset_iam_member" "billing_export" {
+  count = var.enable_cloud_cost_management ? 1 : 0
+
   dataset_id = google_bigquery_dataset.billing_export[0].dataset_id
   member     = "serviceAccount:${google_service_account.integration.email}"
   project    = var.project
