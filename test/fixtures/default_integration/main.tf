@@ -15,14 +15,14 @@ module "test" {
   source = "../../../global"
 
   api_key                      = var.api_key
-  cost_center                  = "x000"
   enable_cloud_cost_management = false
   is_cspm_enabled              = true
 
   labels = {
-    env        = "sb"
-    repository = "terraform-google-storage-bucket"
-    team       = "testing"
+    cost-center = "x000"
+    env         = "sb"
+    repository  = "terraform-google-storage-bucket"
+    team        = "testing"
   }
 
   project = var.project

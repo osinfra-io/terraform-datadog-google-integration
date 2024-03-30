@@ -27,7 +27,7 @@ resource "google_bigquery_dataset" "billing_export" {
   dataset_id    = "billing_export"
   description   = "Cloud Billing data to export to BigQuery"
   friendly_name = "Billing Export"
-  labels        = local.labels
+  labels        = var.labels
   location      = var.cloud_cost_management_location
 
   project = var.project
@@ -69,7 +69,7 @@ resource "google_service_account_iam_member" "integration" {
 resource "google_storage_bucket" "cloud_cost_management" {
   count = var.enable_cloud_cost_management ? 1 : 0
 
-  labels                      = local.labels
+  labels                      = var.labels
   location                    = var.cloud_cost_management_location
   name                        = "datadog-cloud-cost-management-${random_id.this.hex}"
   project                     = var.project
@@ -111,7 +111,7 @@ resource "google_project_iam_member" "this" {
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_topic
 
 resource "google_pubsub_topic" "integration" {
-  labels  = local.labels
+  labels  = var.labels
   name    = "export-logs-to-datadog"
   project = var.project
 }
@@ -120,7 +120,7 @@ resource "google_pubsub_topic" "integration" {
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_subscription
 
 resource "google_pubsub_subscription" "integration" {
-  labels  = local.labels
+  labels  = var.labels
   name    = "export-logs-to-datadog"
   project = var.project
   topic   = google_pubsub_topic.integration.name
