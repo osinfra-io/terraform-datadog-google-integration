@@ -4,11 +4,6 @@ variable "api_key" {
   sensitive   = true
 }
 
-variable "cost_center" {
-  description = "The cost center to use for resource labels"
-  type        = string
-}
-
 variable "cloud_cost_management_location" {
   description = "The location for the cloud cost management bucket and Bigquery dataset, only used if enable_cloud_cost_management is true"
   type        = string
