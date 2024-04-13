@@ -2,7 +2,7 @@
 
 **[GitHub Actions](https://github.com/osinfra-io/terraform-datadog-google-integration/actions):**
 
-[![Dependabot](https://github.com/osinfra-io/terraform-datadog-google-integration/actions/workflows/dependabot.yml/badge.svg)](https://github.com/osinfra-io/terraform-datadog-google-integration/actions/workflows/dependabot.yml)
+[![Terraform Tests](https://github.com/osinfra-io/terraform-datadog-google-integration/actions/workflows/test.yml/badge.svg)](https://github.com/osinfra-io/terraform-datadog-google-integration/actions/workflows/test.yml) [![Dependabot](https://github.com/osinfra-io/terraform-datadog-google-integration/actions/workflows/dependabot.yml/badge.svg)](https://github.com/osinfra-io/terraform-datadog-google-integration/actions/workflows/dependabot.yml)
 
 **[Infracost](https://www.infracost.io):**
 
@@ -20,7 +20,7 @@ Terraform **example** module for Datadog Google Cloud Platform integration.
 ## 🔩 Usage
 
 > [!TIP]
-> You can check the [test/fixtures](test/fixtures/) directory for example configurations. These fixtures set up the system for testing by providing all the necessary initial code, thus creating good examples to base your configurations.
+> You can check the [fixtures](fixtures) directory for example configurations. These fixtures set up the system for testing by providing all the necessary initial code, thus creating good examples to base your configurations.
 
 Required APIs (managed with the [terraform-google-project](https://github.com/osinfra-io/terraform-google-project) child module):
 
@@ -70,7 +70,7 @@ terraform init
 ```
 
 ```none
-terraform test
+terraform test -var="api_key=$DATADOG_API_KEY" -var="app_key=$DATADOG_APP_KEY"
 ```
 
 ## 📓 Terraform Documentation
