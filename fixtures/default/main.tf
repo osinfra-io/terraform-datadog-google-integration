@@ -12,7 +12,7 @@ provider "datadog" {
 }
 
 module "test" {
-  source = "../../../global"
+  source = "../../global"
 
   api_key                      = var.api_key
   enable_cloud_cost_management = false
