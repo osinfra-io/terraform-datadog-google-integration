@@ -22,7 +22,7 @@ jobs:
       terraform_test_args: -var=app_key="BLAA" -var=api_key="BLAA"
       terraform_version: ${{ vars.TERRAFORM_VERSION }}
       workload_identity_provider: projects/746490462722/locations/global/workloadIdentityPools/github-actions/providers/github-actions-oidc
-    secrets:
-      terraform_test_secret_args: >-
-        -var=api_key=${{ secrets.DATADOG_API_KEY }}
-        -var=app_key=${{ secrets.DATADOG_APP_KEY }}
+    # secrets:
+    #   terraform_test_secret_args: >-
+    #     -var=api_key=${{ secrets.DATADOG_API_KEY }}
+    #     -var=app_key=${{ secrets.DATADOG_APP_KEY }}
