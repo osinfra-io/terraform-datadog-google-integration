@@ -13,16 +13,15 @@ permissions:
   id-token: write
 
 jobs:
-  default:
-    name: "Default"
-    uses: osinfra-io/github-terraform-called-workflows/.github/workflows/test.yml@v0.2.4
+  tests:
+    name: Tests
+    uses: osinfra-io/github-terraform-gcp-called-workflows/.github/workflows/test.yml@v0.2.4
     if: github.actor != 'dependabot[bot]'
     with:
-      service_account: "plt-lz-testing-github@ptl-lz-terraform-tf91-sb.iam.gserviceaccount.com"
+      service_account: plt-lz-testing-github@ptl-lz-terraform-tf91-sb.iam.gserviceaccount.com
       terraform_version: ${{ vars.TERRAFORM_VERSION }}
-      workload_identity_provider: "projects/746490462722/locations/global/workloadIdentityPools/github-actions/providers/github-actions-oidc"
+      workload_identity_provider: projects/746490462722/locations/global/workloadIdentityPools/github-actions/providers/github-actions-oidc
     secrets:
       terraform_test_secret_args: >-
         -var=api_key=${{ secrets.DATADOG_API_KEY }}
-        -var=app_key=${{ secrets.DATADOG_APP_KEY }}    
-    
+        -var=app_key=${{ secrets.DATADOG_APP_KEY }}
