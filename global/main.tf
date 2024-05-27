@@ -111,6 +111,11 @@ resource "google_project_iam_member" "this" {
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_topic
 
 resource "google_pubsub_topic" "integration" {
+
+  # Ensure PubSub Topics are encrypted with Customer Supplied Encryption Keys (CSEK)
+  # Not necessary for this use case
+  # checkov:skip=CKV_GCP_83
+
   labels  = var.labels
   name    = "export-logs-to-datadog"
   project = var.project
