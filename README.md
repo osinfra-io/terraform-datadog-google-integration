@@ -79,29 +79,42 @@ terraform test -var="api_key=$DATADOG_API_KEY" -var="app_key=$DATADOG_APP_KEY"
 > A child module automatically inherits default (un-aliased) provider configurations from its parent. The provider versions below are informational only and do **not** need to align with the provider configurations from its parent.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-## Requirements
+### Providers
 
-No requirements.
+| Name | Version |
+|------|---------|
+| datadog | 3.41.0 |
+| google | 5.38.0 |
+| random | 3.6.2 |
 
-## Providers
+### Resources
 
-No providers.
+| Name | Type |
+|------|------|
+| [datadog_integration_gcp_sts.this](https://registry.terraform.io/providers/datadog/datadog/latest/docs/resources/integration_gcp_sts) | resource |
+| [google_bigquery_dataset.billing_export](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/bigquery_dataset) | resource |
+| [google_bigquery_dataset_iam_member.billing_export](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/bigquery_dataset_iam_member) | resource |
+| [google_logging_project_sink.integration](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/logging_project_sink) | resource |
+| [google_project_iam_member.this](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_iam_member) | resource |
+| [google_pubsub_subscription.integration](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_subscription) | resource |
+| [google_pubsub_topic.integration](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_topic) | resource |
+| [google_pubsub_topic_iam_member.integration](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_topic_iam_member) | resource |
+| [google_service_account.integration](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account) | resource |
+| [google_service_account_iam_member.integration](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account_iam_member) | resource |
+| [google_storage_bucket.cloud_cost_management](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket) | resource |
+| [google_storage_bucket_iam_member.cloud_cost_management](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket_iam_member) | resource |
+| [random_id.this](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/id) | resource |
 
-## Modules
+### Inputs
 
-No modules.
-
-## Resources
-
-No resources.
-
-## Inputs
-
-No inputs.
-
-## Outputs
-
-No outputs.
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| api\_key | Datadog API key | `string` | n/a | yes |
+| cloud\_cost\_management\_location | The location for the cloud cost management bucket and Bigquery dataset, only used if enable\_cloud\_cost\_management is true | `string` | `"US"` | no |
+| enable\_cloud\_cost\_management | Whether Datadog collects cloud cost management data from your GCP project, this should only be set to true in a single project | `bool` | `false` | no |
+| is\_cspm\_enabled | Whether Datadog collects cloud security posture management resources from your GCP project | `bool` | `false` | no |
+| labels | A map of key/value pairs to assign to the resources being created | `map(string)` | ```{ "system": "datadog" }``` | no |
+| project | Google Cloud Project ID being monitored | `string` | n/a | yes |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## 📓 Terraform Regional Documentation
