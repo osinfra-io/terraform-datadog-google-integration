@@ -6,7 +6,7 @@ terraform {
     google = {
       source = "hashicorp/google"
     }
-  
+
     datadog = {
       source = "datadog/datadog"
     }
