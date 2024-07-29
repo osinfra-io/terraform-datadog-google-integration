@@ -116,7 +116,3 @@ terraform test -var="api_key=$DATADOG_API_KEY" -var="app_key=$DATADOG_APP_KEY"
 | labels | A map of key/value pairs to assign to the resources being created | `map(string)` | ```{ "system": "datadog" }``` | no |
 | project | Google Cloud Project ID being monitored | `string` | n/a | yes |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-
-## 📓 Terraform Regional Documentation
-
-- [regional](regional/README.md)

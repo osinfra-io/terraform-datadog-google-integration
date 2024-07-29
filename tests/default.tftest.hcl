@@ -15,10 +15,6 @@ mock_provider "google" {
 
 run "default" {
   command = apply
-  variables  {
-    api_key = "mock"
-    app_key = "mock"
-  }
 
   module {
     source = "./tests/fixtures/default"

@@ -1,6 +1,3 @@
-# Required Providers
-# https://developer.hashicorp.com/terraform/language/providers/requirements
-
 terraform {
   required_providers {
     google = {
@@ -14,23 +11,24 @@ terraform {
 }
 
 provider "datadog" {
-  api_key = var.api_key
-  app_key = var.app_key
+  api_key = "mock"
+  app_key = "mock"
 }
 
 module "test" {
   source = "../../../"
 
-  api_key                      = var.api_key
+  api_key                      = "mock"
   enable_cloud_cost_management = false
   is_cspm_enabled              = true
 
   labels = {
     cost-center = "x000"
-    env         = "sb"
-    repository  = "terraform-google-storage-bucket"
-    team        = "testing"
+    env         = "mock"
+    repository  = "mock"
+    team        = "mock"
   }
 
-  project = var.project
+  project = "mock"
 }
+
