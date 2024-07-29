@@ -114,5 +114,5 @@ terraform test -var="api_key=$DATADOG_API_KEY" -var="app_key=$DATADOG_APP_KEY"
 | enable\_cloud\_cost\_management | Whether Datadog collects cloud cost management data from your GCP project, this should only be set to true in a single project | `bool` | `false` | no |
 | is\_cspm\_enabled | Whether Datadog collects cloud security posture management resources from your GCP project | `bool` | `false` | no |
 | labels | A map of key/value pairs to assign to the resources being created | `map(string)` | ```{ "system": "datadog" }``` | no |
-| project | Google Cloud Project ID being monitored | `string` | n/a | yes |
+| project | The ID of the project in which the resource belongs | `string` | n/a | yes |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
