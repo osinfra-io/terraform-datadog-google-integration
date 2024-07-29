@@ -31,6 +31,6 @@ variable "labels" {
 }
 
 variable "project" {
-  description = "Google Cloud Project ID being monitored"
+  description = "The ID of the project in which the resource belongs"
   type        = string
 }
