@@ -13,9 +13,10 @@ terraform {
 # https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/integration_gcp_sts
 
 resource "datadog_integration_gcp_sts" "this" {
-  client_email    = google_service_account.integration.email
-  is_cspm_enabled = var.is_cspm_enabled
-  host_filters    = ["datadog:monitored"]
+  client_email                       = google_service_account.integration.email
+  host_filters                       = var.host_filters
+  is_cspm_enabled                    = var.is_cspm_enabled
+  is_security_command_center_enabled = var.is_security_command_center_enabled
 }
 
 # Google BigQuery Dataset Resource
