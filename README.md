@@ -112,7 +112,9 @@ terraform test -var="api_key=$DATADOG_API_KEY" -var="app_key=$DATADOG_APP_KEY"
 | api\_key | Datadog API key | `string` | n/a | yes |
 | cloud\_cost\_management\_location | The location for the cloud cost management bucket and Bigquery dataset, only used if enable\_cloud\_cost\_management is true | `string` | `"US"` | no |
 | enable\_cloud\_cost\_management | Whether Datadog collects cloud cost management data from your GCP project, this should only be set to true in a single project | `bool` | `false` | no |
+| host\_filters | A list of host filters to apply to the Datadog GCP integration | `list(string)` | `[]` | no |
 | is\_cspm\_enabled | Whether Datadog collects cloud security posture management resources from your GCP project | `bool` | `false` | no |
+| is\_security\_command\_center\_enabled | When enabled, Datadog will attempt to collect Security Command Center Findings. Note: This requires additional permissions on the service account | `bool` | `false` | no |
 | labels | A map of key/value pairs to assign to the resources being created | `map(string)` | ```{ "system": "datadog" }``` | no |
 | project | The ID of the project in which the resource belongs | `string` | n/a | yes |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

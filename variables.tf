@@ -16,8 +16,20 @@ variable "enable_cloud_cost_management" {
   default     = false
 }
 
+variable "host_filters" {
+  description = "A list of host filters to apply to the Datadog GCP integration"
+  type        = list(string)
+  default     = []
+}
+
 variable "is_cspm_enabled" {
   description = "Whether Datadog collects cloud security posture management resources from your GCP project"
+  type        = bool
+  default     = false
+}
+
+variable "is_security_command_center_enabled" {
+  description = "When enabled, Datadog will attempt to collect Security Command Center Findings. Note: This requires additional permissions on the service account"
   type        = bool
   default     = false
 }
