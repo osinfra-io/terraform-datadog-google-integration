@@ -23,6 +23,10 @@ resource "datadog_integration_gcp_sts" "this" {
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/bigquery_dataset
 
 resource "google_bigquery_dataset" "billing_export" {
+
+  # Ensure Big Query Datasets are encrypted with Customer Supplied Encryption Keys (CSEK)
+  # checkov:skip=CKV_GCP_81: Not really needed for the billing export dataset
+
   count = var.enable_cloud_cost_management ? 1 : 0
 
   dataset_id    = "billing_export"
@@ -68,6 +72,16 @@ resource "google_service_account_iam_member" "integration" {
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket
 
 resource "google_storage_bucket" "cloud_cost_management" {
+
+  # Ensure public access prevention is enforced on Cloud Storage bucket
+  # checkov:skip=CKV_GCP_114: This need to be a public bucket to allow Datadog to access
+
+  # Ensure Cloud storage has versioning enabled
+  # checkov:skip=CKV_GCP_78: We don't need versioning for the billing export bucket
+
+  # Bucket should log access
+  # checkov:skip=CKV_GCP_62: We don't need logging for the billing export bucket
+
   count = var.enable_cloud_cost_management ? 1 : 0
 
   labels                      = var.labels
