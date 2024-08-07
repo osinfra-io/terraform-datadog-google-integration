@@ -19,15 +19,8 @@ module "test" {
   source = "../../../"
 
   api_key                      = "mock"
-  enable_cloud_cost_management = false
+  enable_cloud_cost_management = var.enable_cloud_cost_management
   is_cspm_enabled              = true
-
-  labels = {
-    cost-center = "x000"
-    env         = "mock"
-    repository  = "mock"
-    team        = "mock"
-  }
-
-  project = "mock"
+  labels                       = local.labels
+  project                      = var.project
 }
