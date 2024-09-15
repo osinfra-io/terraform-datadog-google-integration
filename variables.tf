@@ -1,3 +1,6 @@
+# Input Variables
+# https://www.terraform.io/language/values/variables
+
 variable "api_key" {
   description = "Datadog API key"
   type        = string

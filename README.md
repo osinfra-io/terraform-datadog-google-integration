@@ -78,14 +78,14 @@ terraform test -var="api_key=$DATADOG_API_KEY" -var="app_key=$DATADOG_APP_KEY"
 
 > A child module automatically inherits default (un-aliased) provider configurations from its parent. The provider versions below are informational only and do **not** need to align with the provider configurations from its parent.
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ### Providers
 
 | Name | Version |
 |------|---------|
-| datadog | 3.41.0 |
-| google | 5.38.0 |
-| random | 3.6.2 |
+| datadog | 3.44.1 |
+| google | 6.2.0 |
+| random | 3.6.3 |
 
 ### Resources
 
@@ -117,4 +117,4 @@ terraform test -var="api_key=$DATADOG_API_KEY" -var="app_key=$DATADOG_APP_KEY"
 | is\_security\_command\_center\_enabled | When enabled, Datadog will attempt to collect Security Command Center Findings. Note: This requires additional permissions on the service account | `bool` | `false` | no |
 | labels | A map of key/value pairs to assign to the resources being created | `map(string)` | ```{ "system": "datadog" }``` | no |
 | project | The ID of the project in which the resource belongs | `string` | n/a | yes |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->
