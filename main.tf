@@ -115,7 +115,7 @@ resource "google_project_iam_member" "this" {
     "roles/cloudasset.viewer",
     "roles/compute.viewer",
     "roles/monitoring.viewer",
-    "roles/securitycenter.findingsEditor"
+    "roles/securitycenter.findingsViewer"
   ])
 
   member  = "serviceAccount:${google_service_account.integration.email}"
