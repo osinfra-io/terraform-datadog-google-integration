@@ -96,7 +96,6 @@ terraform test -var="api_key=$DATADOG_API_KEY" -var="app_key=$DATADOG_APP_KEY"
 | [google_bigquery_dataset.billing_export](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/bigquery_dataset) | resource |
 | [google_bigquery_dataset_iam_member.billing_export](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/bigquery_dataset_iam_member) | resource |
 | [google_logging_project_sink.integration](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/logging_project_sink) | resource |
-| [google_project_iam_member.security_command_center](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_iam_member) | resource |
 | [google_project_iam_member.this](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_iam_member) | resource |
 | [google_pubsub_subscription.integration](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_subscription) | resource |
 | [google_pubsub_topic.integration](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_topic) | resource |
@@ -115,8 +114,8 @@ terraform test -var="api_key=$DATADOG_API_KEY" -var="app_key=$DATADOG_APP_KEY"
 | cloud\_cost\_management\_location | The location for the cloud cost management bucket and Bigquery dataset, only used if enable\_cloud\_cost\_management is true | `string` | `"US"` | no |
 | enable\_cloud\_cost\_management | Whether Datadog collects cloud cost management data from your GCP project, this should only be set to true in a single project | `bool` | `false` | no |
 | host\_filters | A list of host filters to apply to the Datadog GCP integration | `list(string)` | `[]` | no |
-| is\_cspm\_enabled | Whether Datadog collects cloud security posture management resources from your GCP project | `bool` | `false` | no |
-| is\_security\_command\_center\_enabled | When enabled, Datadog will attempt to collect Security Command Center Findings. Note: This requires additional permissions on the service account | `bool` | `false` | no |
+| is\_cspm\_enabled | Whether Datadog collects cloud security posture management resources from your GCP project | `bool` | `true` | no |
+| is\_security\_command\_center\_enabled | When enabled, Datadog will attempt to collect Security Command Center Findings. Note: This requires additional permissions on the service account | `bool` | `true` | no |
 | labels | A map of key/value pairs to assign to the resources being created | `map(string)` | ```{ "system": "datadog" }``` | no |
 | project | The ID of the project in which the resource belongs | `string` | n/a | yes |
 <!-- END_TF_DOCS -->

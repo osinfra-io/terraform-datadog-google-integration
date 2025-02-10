@@ -110,24 +110,17 @@ resource "google_storage_bucket_iam_member" "cloud_cost_management" {
 
 resource "google_project_iam_member" "this" {
   for_each = toset([
+    "organizations/163313809793/roles/datadog.cloudCostManagement",
     "roles/browser",
     "roles/cloudasset.viewer",
     "roles/compute.viewer",
     "roles/monitoring.viewer",
-    "organizations/163313809793/roles/datadog.cloudCostManagement"
+    "roles/securitycenter.findingsEditor"
   ])
 
   member  = "serviceAccount:${google_service_account.integration.email}"
   project = var.project
   role    = each.key
-}
-
-resource "google_project_iam_member" "security_command_center" {
-  count = var.is_security_command_center_enabled ? 1 : 0
-
-  member  = "serviceAccount:${google_service_account.integration.email}"
-  project = var.project
-  role    = "roles/securitycenter.findingsEditor"
 }
 
 # Google PubSub Topic Resource
