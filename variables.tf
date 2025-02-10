@@ -28,13 +28,13 @@ variable "host_filters" {
 variable "is_cspm_enabled" {
   description = "Whether Datadog collects cloud security posture management resources from your GCP project"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "is_security_command_center_enabled" {
   description = "When enabled, Datadog will attempt to collect Security Command Center Findings. Note: This requires additional permissions on the service account"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "labels" {
