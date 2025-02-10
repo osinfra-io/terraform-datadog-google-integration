@@ -122,6 +122,14 @@ resource "google_project_iam_member" "this" {
   role    = each.key
 }
 
+resource "google_project_iam_member" "security_command_center" {
+  count = var.is_security_command_center_enabled ? 1 : 0
+
+  member  = "serviceAccount:${google_service_account.integration.email}"
+  project = var.project
+  role    = "roles/securitycenter.findingsEditor"
+}
+
 # Google PubSub Topic Resource
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_topic
 
