@@ -32,7 +32,9 @@ Required APIs (managed with the [terraform-google-project](https://github.com/os
 - `compute.googleapis.com`
 - `iam.googleapis.com`
 - `monitoring.googleapis.com`
+- `pubsub.googleapis.com`
 - `securitycenter.googleapis.com` (If `is_security_command_center_enabled` is `true`)
+- `serviceusage.googleapis.com`
 
 ## <img align="left" width="35" height="35" src="https://github.com/osinfra-io/github-organization-management/assets/1610100/39d6ae3b-ccc2-42db-92f1-276a5bc54e65"> Development
 

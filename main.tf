@@ -58,7 +58,7 @@ resource "google_cloud_asset_project_feed" "export_asset_changes_to_datadog" {
 
   feed_output_config {
     pubsub_destination {
-      topic = google_pubsub_topic.export_asset_changes_to_datadog.name
+      topic = google_pubsub_topic.export_asset_changes_to_datadog.id
     }
   }
 
