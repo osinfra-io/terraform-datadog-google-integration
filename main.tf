@@ -54,9 +54,6 @@ resource "google_bigquery_dataset_iam_member" "billing_export" {
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/cloud_asset_project_feed
 
 resource "google_cloud_asset_project_feed" "export_asset_changes_to_datadog" {
-  project = var.project
-  feed_id = "export-asset-changes-to-datadog"
-
   asset_types = [".*"]
 
   feed_output_config {
@@ -64,6 +61,9 @@ resource "google_cloud_asset_project_feed" "export_asset_changes_to_datadog" {
       topic = google_pubsub_topic.export_asset_changes_to_datadog.name
     }
   }
+
+  feed_id = "export-asset-changes-to-datadog"
+  project = var.project
 }
 
 # Google Service Account Resource
