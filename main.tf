@@ -50,6 +50,22 @@ resource "google_bigquery_dataset_iam_member" "billing_export" {
   role       = "roles/bigquery.dataEditor"
 }
 
+# Google Cloud Asset Project Feed Resource
+# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/cloud_asset_project_feed
+
+resource "google_cloud_asset_project_feed" "export_asset_changes_to_datadog" {
+  asset_types = [".*"]
+
+  feed_output_config {
+    pubsub_destination {
+      topic = google_pubsub_topic.export_asset_changes_to_datadog.id
+    }
+  }
+
+  feed_id = "export-asset-changes-to-datadog"
+  project = var.project
+}
+
 # Google Service Account Resource
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_service_account
 
@@ -126,6 +142,17 @@ resource "google_project_iam_member" "this" {
 # Google PubSub Topic Resource
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_topic
 
+resource "google_pubsub_topic" "export_asset_changes_to_datadog" {
+
+  # Ensure PubSub Topics are encrypted with Customer Supplied Encryption Keys (CSEK)
+  # Not necessary for this use case
+  # checkov:skip=CKV_GCP_83
+
+  labels  = var.labels
+  name    = "export-asset-changes-to-datadog"
+  project = var.project
+}
+
 resource "google_pubsub_topic" "integration" {
 
   # Ensure PubSub Topics are encrypted with Customer Supplied Encryption Keys (CSEK)
@@ -139,6 +166,13 @@ resource "google_pubsub_topic" "integration" {
 
 # Google PubSub Subscription Resource
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_subscription
+
+resource "google_pubsub_subscription" "export_asset_changes_to_datadog" {
+  labels  = var.labels
+  name    = "export-asset-changes-to-datadog"
+  project = var.project
+  topic   = google_pubsub_topic.export_asset_changes_to_datadog.name
+}
 
 resource "google_pubsub_subscription" "integration" {
   labels  = var.labels
@@ -169,6 +203,13 @@ resource "google_logging_project_sink" "integration" {
 
 # Google PubSub Topic IAM Member Resource
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_topic_iam#google_pubsub_topic_iam_member
+
+resource "google_pubsub_subscription_iam_member" "export_asset_changes_to_datadog" {
+  member       = "serviceAccount:${google_service_account.integration.email}"
+  project      = var.project
+  role         = "roles/pubsub.subscriber"
+  subscription = google_pubsub_subscription.export_asset_changes_to_datadog.name
+}
 
 resource "google_pubsub_topic_iam_member" "integration" {
   member  = google_logging_project_sink.integration.writer_identity

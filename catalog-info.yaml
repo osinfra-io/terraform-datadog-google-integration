@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+
+metadata:
+  name: terraform-datadog-google-integration
+  description: Terraform example module for Datadog Google Cloud Platform integration
+
+  annotations:
+    github.com/project-slug: osinfra/terraform-datadog-google-integration
+    backstage.io/techdocs-ref: dir:.
+
+  tags:
+    - datadog
+    - infrastructure-as-code
+    - google-cloud-platform
+    - terraform
+    - terraform-child-module
+
+spec:
+  type: library
+  lifecycle: experimental
+  owner: inner-source
