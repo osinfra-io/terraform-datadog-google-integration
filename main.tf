@@ -204,11 +204,11 @@ resource "google_logging_project_sink" "integration" {
 # Google PubSub Topic IAM Member Resource
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_topic_iam#google_pubsub_topic_iam_member
 
-resource "google_pubsub_topic_iam_member" "export_asset_changes_to_datadog" {
-  member  = "serviceAccount:${google_service_account.integration.email}"
-  project = var.project
-  role    = "roles/pubsub.subscriber"
-  topic   = google_pubsub_topic.export_asset_changes_to_datadog.name
+resource "google_pubsub_subscription_iam_member" "export_asset_changes_to_datadog" {
+  member       = "serviceAccount:${google_service_account.integration.email}"
+  project      = var.project
+  role         = "roles/pubsub.subscriber"
+  subscription = google_pubsub_subscription.export_asset_changes_to_datadog.name
 }
 
 resource "google_pubsub_topic_iam_member" "integration" {
