@@ -13,10 +13,12 @@ terraform {
 # https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/integration_gcp_sts
 
 resource "datadog_integration_gcp_sts" "this" {
-  client_email                       = google_service_account.integration.email
-  host_filters                       = var.host_filters
-  is_cspm_enabled                    = var.is_cspm_enabled
-  is_security_command_center_enabled = var.is_security_command_center_enabled
+  client_email                          = google_service_account.integration.email
+  host_filters                          = var.host_filters
+  is_cspm_enabled                       = var.is_cspm_enabled
+  is_resource_change_collection_enabled = var.is_resource_change_collection_enabled
+  is_security_command_center_enabled    = var.is_security_command_center_enabled
+  resource_collection_enabled           = var.resource_collection_enabled
 }
 
 # Google BigQuery Dataset Resource
